@@ -74,22 +74,20 @@ Conference on Knowledge Discovery and Data Mining}
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://open-source.softwareag.com/r-pmml/}
-  \item \url{https://github.com/SoftwareAG/r-pmml}
-  \item \url{https://www.softwareag.com/corporate/products/az/zementis/default.html}
-  \item Report bugs at \url{https://github.com/SoftwareAG/r-pmml/issues}
+  \item \url{https://github.com/mhahsler/r-pmml}
+  \item Report bugs at \url{https://github.com/mhahsler/r-pmml/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Dmitriy Bolotov \email{dmitriy.bolotov@softwareag.com}
+\strong{Maintainer}: Michael Hahsler \email{mhahsler@lyle.smu.edy}
 
 Authors:
 \itemize{
+  \item Dmitriy Bolotov \email{dmitriy.bolotov@softwareag.com}
   \item Tridivesh Jena \email{tridivesh.jena@softwareag.com}
   \item Graham Williams \email{graham.williams@togaware.net}
   \item Wen-Ching Lin
-  \item Michael Hahsler \email{michael@hahsler.net}
   \item Hemant Ishwaran
   \item Udaya B. Kogalur
   \item Rajarshi Guha \email{rguha@indiana.edu}

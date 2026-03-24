@@ -1,5 +1,9 @@
-# pmml 2.5.1.9000
-## Breaking Changes
+# pmml 2.5.1.9000 (03/24/2026)
+
+## Maintainer Change
+* The maintainer is now Michael Hahsler.
+
+## Changes
 * Removed support for RandomForestSRC package.
 
 # pmml 2.5.1
