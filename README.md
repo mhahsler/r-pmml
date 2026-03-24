@@ -31,7 +31,7 @@ Supported models include:
 
 For a description of the supported packages, see the vignette:
 [Supported Packages and Additional
-Functions](https://mhahsler.github.io/r-pmml/articles/packages_and_functions.html).
+Functions](https://mhahsler.r-universe.dev/articles/pmml/packages_and_functions.html).
 
 ## Installation
 
@@ -61,12 +61,13 @@ iris_lm <- lm(Sepal.Length ~ ., data = iris)
 # Convert to pmml
 iris_lm_pmml <- pmml(iris_lm)
 
+# The PMML model
 iris_lm_pmml
 #> <PMML version="4.4.1" xmlns="http://www.dmg.org/PMML-4_4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_4 http://www.dmg.org/pmml/v4-4/pmml-4-4.xsd">
 #>  <Header copyright="Copyright (c) 2026 mhahsler" description="Linear Regression Model">
 #>   <Extension name="user" value="mhahsler" extender="SoftwareAG PMML Generator"/>
 #>   <Application name="SoftwareAG PMML Generator" version="2.5.2.1"/>
-#>   <Timestamp>2026-03-24 18:13:48.550694</Timestamp>
+#>   <Timestamp>2026-03-24 18:20:53.67523</Timestamp>
 #>  </Header>
 #>  <DataDictionary numberOfFields="5">
 #>   <DataField name="Sepal.Length" optype="continuous" dataType="double"/>
@@ -103,12 +104,6 @@ iris_lm_pmml
 
 # Write to file: save_pmml(iris_lm_pmml,'iris_lm.pmml')
 ```
-
-## Contributions
-
-Please note that this project is released with a [Contributor Code of
-Conduct](https://mhahsler.github.io/r-pmml/blob/master/.github/CODE_OF_CONDUCT.md).
-By contributing to this project, you agree to abide by its terms.
 
 ## References
 
