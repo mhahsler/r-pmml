@@ -3,7 +3,6 @@
 \docType{package}
 \name{pmml-package}
 \alias{pmml-package}
-\alias{_PACKAGE}
 \title{pmml: Generate PMML for R Models}
 \description{
 Export various R models to PMML and generate data transformations in PMML
