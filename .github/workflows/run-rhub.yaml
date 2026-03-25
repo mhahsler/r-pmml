@@ -19,17 +19,16 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
 
-      - name: Run checks (wrapped R with rhub)
+      - name: Run checks
         run: |
-          nix run nixpkgs#rWrapper.override {
-            packages = with nixpkgs.rPackages; [ rhub ];
-          } --command Rscript -e "rhub::rhub_check(
-            platforms = c(
-              'linux',
-              'macos-arm64',
-              'windows',
-              'ubuntu-next',
-              'ubuntu-release',
-              'gcc14'
-            )
-          )"
+          nix run nixpkgs#rPackages.rhub --command \
+            Rscript -e "rhub::rhub_check(
+              platforms = c(
+                'linux',
+                'macos-arm64',
+                'windows',
+                'ubuntu-next',
+                'ubuntu-release',
+                'gcc14'
+              )
+            )"
