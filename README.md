@@ -9,6 +9,8 @@ CRAN](https://www.r-pkg.org/badges/version/pmml)](https://CRAN.R-project.org/pac
 downloads](https://cranlogs.r-pkg.org/badges/pmml)](https://CRAN.R-project.org/package=pmml)
 ![License](https://img.shields.io/cran/l/pmml) [![r-universe
 status](https://mhahsler.r-universe.dev/badges/pmml)](https://mhahsler.r-universe.dev/pmml)
+[![R-hub
+v2](https://github.com/mhahsler/r-pmml/actions/workflows/rhub.yaml/badge.svg)](https://github.com/mhahsler/r-pmml/actions/workflows/rhub.yaml/)
 
 ## Overview
 

@@ -1,0 +1,33 @@
+# Run rhub checks
+on:
+  push:
+    branches: [main, master]
+
+name: run-rhub-checks
+
+permissions: write-all
+
+jobs:
+  run-rhub-checks:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Run checks
+        run: |
+          nix-shell -p "rWrapper.override { packages = [ rPackages.rhub ]; }" \
+            --run "Rscript -e \"rhub::rhub_check(
+              platforms = c(
+                'linux',
+                'macos-arm64',
+                'windows',
+                'ubuntu-next',
+                'ubuntu-release'
+              )
+            )\""
