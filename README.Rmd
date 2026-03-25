@@ -23,6 +23,8 @@ pkg_title(pkg)
 ## Overview
 
 Export various machine learning and statistical models to PMML and generate data transformations in PMML format.
+Many commercial and open data mining plattforms support PMML. This includes IBM SPSS Modeler, KNIME, Microsoft SQL Server,
+and SAS Enterprise Miner (see [complete list](https://dmg.org/pmml/products.html)). 
 
 Supported models include:
 
@@ -38,7 +40,32 @@ Supported models include:
 - Tree-based Models and Ensembles
 - Survival analysis models
 
+Supported packages: 
+    [ada](https://CRAN.R-project.org/package=ada),
+    [amap](https://CRAN.R-project.org/package=amap),
+    [arules](https://CRAN.R-project.org/package=arules),
+    [e1071](https://CRAN.R-project.org/package=e1071),
+    [forecast](https://CRAN.R-project.org/package=forecast),
+    [gbm](https://CRAN.R-project.org/package=gbm),
+    [glmnet](https://CRAN.R-project.org/package=glmnet),
+    [isofor](https://github.com/gravesee/isofor),
+    [kernlab](https://CRAN.R-project.org/package=kernlab),
+    [neighbr](https://CRAN.R-project.org/package=neighbr),
+    stats,
+    [nnet](https://CRAN.R-project.org/package=nnet),
+    [randomForest](https://CRAN.R-project.org/package=randomForest),
+    [rpart](https://CRAN.R-project.org/package=rpart),
+    [survival](https://CRAN.R-project.org/package=survival),
+    [xgboost](https://CRAN.R-project.org/package=xgboost)
+
 For a description of the supported packages, see the vignette: [Supported Packages and Additional Functions](https://mhahsler.r-universe.dev/articles/pmml/packages_and_functions.html).
+
+## Related Packages
+
+The Java library [JMML](https://github.com/jpmml) provides an R interface to create PMML
+models called [r2pmml]() available from CRAN and an evaluator [jpmml](https://github.com/jpmml/jpmml-evaluator-r) which
+can be installed from Github.
+
 
 ```{r echo=FALSE, results = 'asis'}
 pkg_install(pkg)

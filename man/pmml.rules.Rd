@@ -44,6 +44,19 @@ package \pkg{arules}.
 \details{
 The model is represented in the PMML AssociationModel format.
 }
+\examples{
+\dontrun{
+
+library(arules)
+data(Adult)
+
+rules <- apriori(Adult, support = 0.5, confidence = 0.9)
+
+rules_pmml <- pmml(rules)
+rules_pmml
+
+}
+}
 \references{
 \href{https://CRAN.R-project.org/package=arules}{arules: Mining Association
 Rules and Frequent Itemsets}
