@@ -28,7 +28,6 @@ jobs:
                 'macos-arm64',
                 'windows',
                 'ubuntu-next',
-                'ubuntu-release',
-                'gcc14'
+                'ubuntu-release'
               )
             )\""
