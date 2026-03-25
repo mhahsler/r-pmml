@@ -1,13 +1,6 @@
-^cran-comments.md$
 ^README\.Rmd$
 ^.Renviron$
-^\.github$
-tests/testthat/test_pmml_integration.R
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.github$
-^docs$
-^pkgdown$
-^revdep$
-^CRAN-RELEASE$
-^CRAN-SUBMISSION$
+^_config.yml
