@@ -10,7 +10,6 @@ skip_on_ci()
 skip_if_not_installed("jpmml")
 
 library("jpmml")
-library("magrittr") # Defines the `%>%` operator
 
 
 ### lm
@@ -19,11 +18,11 @@ fit <- lm(Sepal.Length ~ ., data = iris)
 fit_pmml <- pmml(fit)
 save_pmml(fit_pmml, "model.pmml")
 
-evaluator <- newLoadingModelEvaluatorBuilder() %>%
-  loadFile("model.pmml") %>%
+evaluator <- newLoadingModelEvaluatorBuilder() |>
+  loadFile("model.pmml") |>
   build()
 
-evaluator <- evaluator %>%
+evaluator <- evaluator |>
   verify()
 
 val_R <- unname(predict(fit, as.list(iris[1,])))
@@ -31,7 +30,7 @@ val_R <- unname(predict(fit, as.list(iris[1,])))
 arguments <- as.list(iris[1,])
 arguments$Species <- as.character(arguments$Species)
 
-val_JPMML <- evaluator %>%
+val_JPMML <- evaluator |>
   evaluate(arguments)
 
 expect_equal(val_R, val_JPMML$Predicted_Sepal.Length)
