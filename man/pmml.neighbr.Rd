@@ -7,7 +7,7 @@
 \method{pmml}{neighbr}(
   model,
   model_name = "kNN_model",
-  app_name = "SoftwareAG PMML Generator",
+  app_name = "R PMML Generator - Package pmml",
   description = "K Nearest Neighbors Model",
   copyright = NULL,
   model_version = NULL,

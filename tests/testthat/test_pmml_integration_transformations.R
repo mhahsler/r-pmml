@@ -1,4 +1,6 @@
-# Additional tests with transformations
+skip_if_not_installed("zementisr")
+
+#Additional tests with transformations
 
 data(iris)
 data(audit)

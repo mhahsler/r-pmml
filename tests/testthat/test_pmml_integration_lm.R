@@ -1,3 +1,4 @@
+skip_if_not_installed("zementisr")
 
 iris_p <- read.csv("iris.csv", stringsAsFactors = TRUE)
 data(audit)

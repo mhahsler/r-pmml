@@ -65,9 +65,9 @@ iris_lm_pmml <- pmml(iris_lm)
 iris_lm_pmml
 #> <PMML version="4.4.1" xmlns="http://www.dmg.org/PMML-4_4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_4 http://www.dmg.org/pmml/v4-4/pmml-4-4.xsd">
 #>  <Header copyright="Copyright (c) 2026 mhahsler" description="Linear Regression Model">
-#>   <Extension name="user" value="mhahsler" extender="SoftwareAG PMML Generator"/>
-#>   <Application name="SoftwareAG PMML Generator" version="2.5.2.1"/>
-#>   <Timestamp>2026-03-24 18:20:53.67523</Timestamp>
+#>   <Extension name="user" value="mhahsler" extender="R PMML Generator - Package pmml"/>
+#>   <Application name="R PMML Generator - Package pmml" version="2.5.2.1"/>
+#>   <Timestamp>2026-03-24 19:45:09.902526</Timestamp>
 #>  </Header>
 #>  <DataDictionary numberOfFields="5">
 #>   <DataField name="Sepal.Length" optype="continuous" dataType="double"/>

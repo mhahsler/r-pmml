@@ -1,4 +1,4 @@
-
+skip_if_not_installed("zementisr")
 
 forecast_with_cpi <- function(model, h) {
   # create data frame of point forecast and CPI

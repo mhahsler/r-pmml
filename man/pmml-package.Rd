@@ -84,6 +84,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Bruno Rodrigues
   \item Dmitriy Bolotov \email{dmitriy.bolotov@softwareag.com}
   \item Tridivesh Jena \email{tridivesh.jena@softwareag.com}
   \item Graham Williams \email{graham.williams@togaware.net}

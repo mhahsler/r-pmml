@@ -1,3 +1,5 @@
+skip_if_not_installed("zementisr")
+
 data(iris)
 data(audit)
 data("WWWusage")

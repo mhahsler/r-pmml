@@ -42,7 +42,7 @@
 #' @export
 pmml.rules <- function(model,
                        model_name = "arules_Model",
-                       app_name = "SoftwareAG PMML Generator",
+                       app_name = "R PMML Generator - Package pmml",
                        description = "Association Rules Model",
                        copyright = NULL,
                        model_version = NULL,

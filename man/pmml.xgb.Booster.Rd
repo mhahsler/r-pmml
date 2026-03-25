@@ -7,7 +7,7 @@
 \method{pmml}{xgb.Booster}(
   model,
   model_name = "xboost_Model",
-  app_name = "SoftwareAG PMML Generator",
+  app_name = "R PMML Generator - Package pmml",
   description = "Extreme Gradient Boosting Model",
   copyright = NULL,
   model_version = NULL,
