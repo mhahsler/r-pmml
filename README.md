@@ -10,11 +10,17 @@ downloads](https://cranlogs.r-pkg.org/badges/pmml)](https://CRAN.R-project.org/p
 ![License](https://img.shields.io/cran/l/pmml) [![r-universe
 status](https://mhahsler.r-universe.dev/badges/pmml)](https://mhahsler.r-universe.dev/pmml)
 
+**This is the official home for the R package pmml (starting with
+version pmml_2.6.0).** Previous versions can be found at
+[here.](https://github.com/Cumulocity-IoT/r-pmml)
+
 ## Overview
 
-Export various machine learning and statistical models to PMML and
-generate data transformations in PMML format. Many commercial and open
-data mining platforms support PMML. This includes IBM SPSS Modeler,
+The pmml package lets you train machine learning and statistical models
+in R and then export them using the [Predictive Model Markup Language
+(PMML)](https://en.wikipedia.org/wiki/Predictive_Model_Markup_Language).
+Many commercial and open data mining platforms support PMML to exchange
+models. This includes Python’s scikit learn, Java, IBM SPSS Modeler,
 KNIME, Microsoft SQL Server, and SAS Enterprise Miner (see [complete
 list](https://dmg.org/pmml/products.html)).
 
@@ -54,11 +60,20 @@ Functions](https://mhahsler.r-universe.dev/articles/pmml/packages_and_functions.
 
 ## Related Packages
 
-The Java library [JMML](https://github.com/jpmml) provides an R
-interface to create PMML models called
-[r2pmml](https://CRAN.R-project.org/package=r2pmml) available from CRAN
-and an evaluator [jpmml](https://github.com/jpmml/jpmml-evaluator-r)
-which can be installed from Github.
+### Java
+
+The Java library [JMML](https://github.com/jpmml) can be used to read
+and execute models stored in PMML format. An R interface to the library
+to create PMML models is called
+[r2pmml](https://CRAN.R-project.org/package=r2pmml) and available from
+CRAN. An R interface for the evaluator, called
+[jpmml](https://github.com/jpmml/jpmml-evaluator-r), can be installed
+from Github.
+
+### Python
+
+[sklearn-pmml-model](https://github.com/iamDecode/sklearn-pmml-model)
+can import models trained on R into Python’s scikit-learn framework.
 
 ## Installation
 
@@ -94,7 +109,7 @@ iris_lm_pmml
 #>  <Header copyright="Copyright (c) 2026 mhahsler" description="Linear Regression Model">
 #>   <Extension name="user" value="mhahsler" extender="R PMML Generator - Package pmml"/>
 #>   <Application name="R PMML Generator - Package pmml" version="2.6.0.1"/>
-#>   <Timestamp>2026-03-26 08:51:55.42062</Timestamp>
+#>   <Timestamp>2026-03-26 14:47:02.442142</Timestamp>
 #>  </Header>
 #>  <DataDictionary numberOfFields="5">
 #>   <DataField name="Sepal.Length" optype="continuous" dataType="double"/>
