@@ -40,15 +40,14 @@ Suggests:
     knitr,
     rmarkdown,
     covr,
-    tibble,
-    jpmml
+    tibble
 Imports:
     methods,
     stats,
     utils,
     stringr
 License: GPL-3 | file LICENSE
-Description: The Predictive Model Markup Language (PMML) is an XML-based language which provides a way for applications to define machine learning, statistical and data mining models and to share models between PMML compliant applications. More information about the PMML industry standard and the Data Mining Group can be found at <http://dmg.org/>. The generated PMML can be imported into any PMML consuming application.
+Description: The Predictive Model Markup Language (PMML) is an XML-based language which provides a way for applications to define machine learning, statistical and data mining models and to share models between PMML compliant applications. More information about the PMML industry standard and the Data Mining Group can be found at <http://dmg.org/>. The generated PMML can be imported into any PMML consuming application, such as Zementis Predictive Analytics products.
 URL: https://github.com/mhahsler/r-pmml
 BugReports: https://github.com/mhahsler/r-pmml/issues
 NeedsCompilation: no
