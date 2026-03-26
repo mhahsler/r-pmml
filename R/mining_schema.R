@@ -1,7 +1,6 @@
 # PMML: Predictive Model Markup Language
 #
-# Copyright (c) 2009-2016, Zementis, Inc.
-# Copyright (c) 2016-2021, Software AG, Darmstadt, Germany and/or Software AG
+# # Copyright (c) 2016-2021, Software AG, Darmstadt, Germany and/or Software AG
 # USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates
 # and/or their licensors.
 #
@@ -311,7 +310,7 @@
   number.of.fields <- length(field$name)
   mining.fields <- list()
 
-  if (field$name[1] == "ZementisClusterIDPlaceHolder" || field$name[1] == "ZementisHiddenTargetField") {
+  if (field$name[1] == "ClusterIDPlaceHolder" || field$name[1] == "HiddenTargetField") {
     begin <- 2
   } else {
     begin <- 1
@@ -356,7 +355,7 @@
   } else {
     for (i in begin:number.of.fields) {
       fName <- .removeAsFactor(field$name[i])
-      if (!(fName %in% namelist) && fName != "ZementisClusterIDPlaceHolder") {
+      if (!(fName %in% namelist) && fName != "ClusterIDPlaceHolder") {
         namelist <- c(namelist, fName)
       }
     }

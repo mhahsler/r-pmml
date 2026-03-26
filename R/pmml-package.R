@@ -1,7 +1,6 @@
 # PMML: Predictive Model Markup Language
 #
-# Copyright (c) 2009-2016, Zementis, Inc.
-# Copyright (c) 2016-2021, Software AG, Darmstadt, Germany and/or Software AG
+# # Copyright (c) 2016-2021, Software AG, Darmstadt, Germany and/or Software AG
 # USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates
 # and/or their licensors.
 #
@@ -51,11 +50,11 @@
 #' data mining models and to share models between PMML compliant applications.
 #' More information about the PMML industry standard and the Data Mining Group
 #' can be found at <http://www.dmg.org>. The generated PMML can be imported
-#' into any PMML consuming application, such as Zementis Predictive Analytics
-#' products, which integrate with web services, relational database systems and
-#' deploy natively on Hadoop in conjunction with Hive, Spark or Storm, as well
-#' as allow predictive analytics to be executed for IBM z Systems mainframe
-#' applications and real-time, streaming analytics platforms.
+#' into any PMML consuming application, which integrate with web services,
+#' relational database systems and deploy natively on Hadoop in conjunction
+#' with Hive, Spark or Storm, as well as allow predictive analytics to be
+#' executed for IBM z Systems mainframe applications and real-time,
+#' streaming analytics platforms.
 #'
 #' @section References:
 #' \itemize{
