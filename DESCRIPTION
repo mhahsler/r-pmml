@@ -1,8 +1,8 @@
 Package: pmml
 Type: Package
 Title: Generate PMML for Various Models
-Version: 2.6.0
-Date: 2026-03-26
+Version: 2.6.0-1
+Date: 2026-xx-xx
 Authors@R: c(
     person("Michael", "Hahsler", email = "mhahsler@lyle.smu.edu", role = c("aut", "cre")),
     person("Bruno", "Rodrigues", role = "aut"),
