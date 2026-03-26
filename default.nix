@@ -46,6 +46,17 @@ let
     propagatedBuildInputs = [ pkgs.rPackages.rJava ];
   };
 
+  isofor = pkgs.rPackages.buildRPackage {
+    name = "isofor";
+    src = pkgs.fetchFromGitHub {
+      owner = "gravesee";
+      repo = "isofor";
+      rev = "master";
+      sha256 = "16chg866bwp9xhws4dpb7263fp3y9g830zr09c174xyddfx2x034";
+    };
+    propagatedBuildInputs = [ pkgs.rPackages.Rcpp pkgs.rPackages.Matrix ];
+  };
+
   jpmml-model = pkgs.stdenv.mkDerivation {
     name = "jpmml-model";
     src = pkgs.fetchFromGitHub {
@@ -96,6 +107,6 @@ pkgs.mkShell {
    LC_PAPER = "en_US.UTF-8";
    LC_MEASUREMENT = "en_US.UTF-8";
 
-  buildInputs = [  rpkgs jpmml-r system_packages   ];
+  buildInputs = [  rpkgs jpmml-r isofor system_packages   ];
   
 }
