@@ -33,7 +33,7 @@ jobs:
         with:
           name: rstats-on-nix
 
-      - name: Build env:
+      - name: Build env
         run: nix-build
 
       - name: Test via nix-shell
