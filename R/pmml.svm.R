@@ -130,7 +130,7 @@
 #' }
 #'
 #' @seealso \code{\link[pmml]{pmml}},
-#' \href{http://dmg.org/pmml/v4-4-1/SupportVectorMachine.html}{PMML SVM specification}
+#' \href{https://dmg.org/pmml/v4-4-1/SupportVectorMachine.html}{PMML SVM specification}
 #'
 #' @export pmml.svm
 #' @export

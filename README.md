@@ -9,14 +9,12 @@ CRAN](https://www.r-pkg.org/badges/version/pmml)](https://CRAN.R-project.org/pac
 downloads](https://cranlogs.r-pkg.org/badges/pmml)](https://CRAN.R-project.org/package=pmml)
 ![License](https://img.shields.io/cran/l/pmml) [![r-universe
 status](https://mhahsler.r-universe.dev/badges/pmml)](https://mhahsler.r-universe.dev/pmml)
-[![R-hub
-v2](https://github.com/mhahsler/r-pmml/actions/workflows/rhub.yaml/badge.svg)](https://github.com/mhahsler/r-pmml/actions/workflows/rhub.yaml/)
 
 ## Overview
 
 Export various machine learning and statistical models to PMML and
 generate data transformations in PMML format. Many commercial and open
-data mining plattforms support PMML. This includes IBM SPSS Modeler,
+data mining platforms support PMML. This includes IBM SPSS Modeler,
 KNIME, Microsoft SQL Server, and SAS Enterprise Miner (see [complete
 list](https://dmg.org/pmml/products.html)).
 
@@ -57,7 +55,8 @@ Functions](https://mhahsler.r-universe.dev/articles/pmml/packages_and_functions.
 ## Related Packages
 
 The Java library [JMML](https://github.com/jpmml) provides an R
-interface to create PMML models called [r2pmml]() available from CRAN
+interface to create PMML models called
+[r2pmml](https://CRAN.R-project.org/package=r2pmml) available from CRAN
 and an evaluator [jpmml](https://github.com/jpmml/jpmml-evaluator-r)
 which can be installed from Github.
 
@@ -94,8 +93,8 @@ iris_lm_pmml
 #> <PMML version="4.4.1" xmlns="http://www.dmg.org/PMML-4_4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_4 http://www.dmg.org/pmml/v4-4/pmml-4-4.xsd">
 #>  <Header copyright="Copyright (c) 2026 mhahsler" description="Linear Regression Model">
 #>   <Extension name="user" value="mhahsler" extender="R PMML Generator - Package pmml"/>
-#>   <Application name="R PMML Generator - Package pmml" version="2.6.0"/>
-#>   <Timestamp>2026-03-24 21:38:22.400425</Timestamp>
+#>   <Application name="R PMML Generator - Package pmml" version="2.6.0.1"/>
+#>   <Timestamp>2026-03-26 08:51:55.42062</Timestamp>
 #>  </Header>
 #>  <DataDictionary numberOfFields="5">
 #>   <DataField name="Sepal.Length" optype="continuous" dataType="double"/>
@@ -136,4 +135,4 @@ iris_lm_pmml
 ## References
 
 - [DMG PMML 4.4.1
-  specification](http://dmg.org/pmml/v4-4-1/GeneralStructure.html)
+  specification](https://dmg.org/pmml/v4-4-1/GeneralStructure.html)
