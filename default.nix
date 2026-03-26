@@ -35,6 +35,11 @@ let
       xgboost;
   };
   
+  jpmml-fat-jar = pkgs.fetchurl {
+    url = "https://github.com/jpmml/jpmml-evaluator/releases/download/1.7.7/pmml-evaluator-example-executable-1.7.7.jar";
+    sha256 = "03hzxh8a0d72cw9nqyz90czlmwsafy6q6i4jc9iq3m609n181x1w";
+  };
+
   jpmml-r = pkgs.rPackages.buildRPackage {
     name = "jpmml";
     src = pkgs.fetchFromGitHub {
@@ -43,7 +48,13 @@ let
       rev = "master";
       sha256 = "1aadqpdypwv8lsvg2ga7zpbf52hhdfc4d6ms0kfx2is95qxig368";
     };
+    nativeBuildInputs = [ pkgs.R ];
+    buildInputs = [ pkgs.jdk ];
     propagatedBuildInputs = [ pkgs.rPackages.rJava ];
+    postUnpack = ''
+      mkdir -p source/inst/java
+      cp ${jpmml-fat-jar} source/inst/java/jpmml-evaluator-executable.jar
+    '';
   };
 
   isofor = pkgs.rPackages.buildRPackage {
@@ -57,32 +68,6 @@ let
     propagatedBuildInputs = [ pkgs.rPackages.Rcpp pkgs.rPackages.Matrix ];
   };
 
-  jpmml-model = pkgs.stdenv.mkDerivation {
-    name = "jpmml-model";
-    src = pkgs.fetchFromGitHub {
-      owner = "jpmml";
-      repo = "jpmml-model";
-      rev = "1.7.7";
-      sha256 = "sha256-O04ENXAovnrrFopLO9dYrwHUjE8WWgB+SKLKNWjpJfI=";
-    };
-    buildInputs = [ pkgs.maven pkgs.jdk ];
-    buildPhase = "mvn package -DskipTests -Dmaven.repo.local=$TMPDIR/repository";
-    installPhase = "mkdir -p $out/share/java; find . -name \"*.jar\" -type f -exec cp {} $out/share/java/ \\;";
-  };
-
-  jpmml-evaluator = pkgs.stdenv.mkDerivation {
-    name = "jpmml-evaluator";
-    src = pkgs.fetchFromGitHub {
-      owner = "jpmml";
-      repo = "jpmml-evaluator";
-      rev = "1.7.7";
-      sha256 = "sha256-DtI/cHmiKVH0IAp3mWJr2sDDjAzM5d9/cBx4KJm74WM=";
-    };
-    buildInputs = [ pkgs.maven pkgs.jdk jpmml-model ];
-    buildPhase = "mvn package -DskipTests -Dmaven.repo.local=$TMPDIR/repository";
-    installPhase = "mkdir -p $out/share/java; find . -name \"*.jar\" -type f -exec cp {} $out/share/java/ \\;";
-  };
-
   system_packages = builtins.attrValues {
     inherit (pkgs) 
       air-formatter
@@ -94,7 +79,7 @@ let
       pandoc
       git
       R;
-  } ++ [ jpmml-model jpmml-evaluator ];
+  };
   
 in
 
