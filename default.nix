@@ -35,6 +35,16 @@ let
       xgboost;
   };
   
+  jpmml-r = pkgs.rPackages.buildRPackage {
+    name = "jpmml";
+    src = pkgs.fetchFromGitHub {
+      owner = "jpmml";
+      repo = "jpmml-evaluator-r";
+      rev = "master";
+      sha256 = "1aadqpdypwv8lsvg2ga7zpbf52hhdfc4d6ms0kfx2is95qxig368";
+    };
+    propagatedBuildInputs = [ pkgs.rPackages.rJava ];
+  };
 
   jpmml-model = pkgs.stdenv.mkDerivation {
     name = "jpmml-model";
@@ -71,6 +81,7 @@ let
       jdk
       maven
       pandoc
+      git
       R;
   } ++ [ jpmml-model jpmml-evaluator ];
   
@@ -85,6 +96,6 @@ pkgs.mkShell {
    LC_PAPER = "en_US.UTF-8";
    LC_MEASUREMENT = "en_US.UTF-8";
 
-  buildInputs = [  rpkgs system_packages   ];
+  buildInputs = [  rpkgs jpmml-r system_packages   ];
   
 }
