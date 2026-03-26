@@ -1,11 +1,6 @@
 test_that("validation against JPMML evaluator works", {
   skip_on_cran()
   skip_on_ci()
-  if (system.file(package = "jpmml") == "") {
-    skip("jpmml not installed")
-  }
-
-  library("jpmml")
 
   # Test against the JPMML Evaluator
   # https://github.com/jpmml/jpmml-evaluator-r
@@ -13,14 +8,22 @@ test_that("validation against JPMML evaluator works", {
   # Installation:
   # devtools::install_github("jpmml/jpmml-evaluator-r")
 
+  skip_if_not_installed("jpmml")
+
+  library("jpmml")
+
+
   ### lm
   data(iris)
+  mod_file <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file), add = TRUE)
+  
   fit <- lm(Sepal.Length ~ ., data = iris)
   fit_pmml <- pmml(fit)
-  save_pmml(fit_pmml, "model.pmml")
+  save_pmml(fit_pmml, mod_file)
 
   evaluator <- newLoadingModelEvaluatorBuilder() |>
-    loadFile("model.pmml") |>
+    loadFile(mod_file) |>
     build()
 
   evaluator <- evaluator |>
@@ -38,12 +41,15 @@ test_that("validation against JPMML evaluator works", {
 
   ### rpart
   library(rpart)
+  mod_file_rpart <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_rpart), add = TRUE)
+  
   fit <- rpart(Species ~ ., data = iris)
   fit_pmml <- pmml(fit)
-  save_pmml(fit_pmml, "model_rpart.pmml")
+  save_pmml(fit_pmml, mod_file_rpart)
 
   evaluator <- newLoadingModelEvaluatorBuilder() |>
-    loadFile("model_rpart.pmml") |>
+    loadFile(mod_file_rpart) |>
     build()
 
   evaluator <- evaluator |>
@@ -60,12 +66,15 @@ test_that("validation against JPMML evaluator works", {
 
   ### randomForest
   library(randomForest)
+  mod_file_rf <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_rf), add = TRUE)
+  
   fit <- randomForest(Species ~ ., data = iris, ntree = 10)
   fit_pmml <- pmml(fit)
-  save_pmml(fit_pmml, "model_rf.pmml")
+  save_pmml(fit_pmml, mod_file_rf)
 
   evaluator <- newLoadingModelEvaluatorBuilder() |>
-    loadFile("model_rf.pmml") |>
+    loadFile(mod_file_rf) |>
     build()
 
   evaluator <- evaluator |>
@@ -82,14 +91,17 @@ test_that("validation against JPMML evaluator works", {
 
   ### glm
   data(audit)
+  mod_file_glm <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_glm), add = TRUE)
+  
   fit <- glm(Adjusted ~ Age + Employment + Education + Marital + Occupation + Income + Sex + Deductions + Hours,
     data = audit, family = binomial(link = logit)
   )
   fit_pmml <- pmml(fit)
-  save_pmml(fit_pmml, "model_glm.pmml")
+  save_pmml(fit_pmml, mod_file_glm)
 
   evaluator <- newLoadingModelEvaluatorBuilder() |>
-    loadFile("model_glm.pmml") |>
+    loadFile(mod_file_glm) |>
     build()
 
   evaluator <- evaluator |>
@@ -104,20 +116,31 @@ test_that("validation against JPMML evaluator works", {
   arguments$Income <- as.numeric(arguments$Income)
   arguments$Deductions <- as.numeric(arguments$Deductions)
   arguments$Hours <- as.numeric(arguments$Hours)
+  
+  # Categorical fields should be strings
+  arguments$Employment <- as.character(arguments$Employment)
+  arguments$Education  <- as.character(arguments$Education)
+  arguments$Marital    <- as.character(arguments$Marital)
+  arguments$Occupation <- as.character(arguments$Occupation)
+  arguments$Sex        <- as.character(arguments$Sex)
 
   val_JPMML <- evaluator |>
     evaluate(arguments)
 
-  expect_equal(val_R, as.character(val_JPMML$Predicted_Adjusted))
+  res_JPMML <- as.character(ifelse(as.numeric(val_JPMML$Predicted_Adjusted) > 0.5, 1, 0))
+  expect_equal(val_R, res_JPMML)
 
   ### multinom
   library(nnet)
+  mod_file_multinom <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_multinom), add = TRUE)
+  
   fit <- multinom(Species ~ ., data = iris, trace = FALSE)
   fit_pmml <- pmml(fit)
-  save_pmml(fit_pmml, "model_multinom.pmml")
+  save_pmml(fit_pmml, mod_file_multinom)
 
   evaluator <- newLoadingModelEvaluatorBuilder() |>
-    loadFile("model_multinom.pmml") |>
+    loadFile(mod_file_multinom) |>
     build()
 
   evaluator <- evaluator |>
@@ -126,6 +149,7 @@ test_that("validation against JPMML evaluator works", {
   val_R <- as.character(predict(fit, iris[1, ]))
 
   arguments <- as.list(iris[1, ])
+  arguments$Species <- as.character(arguments$Species)
 
   val_JPMML <- evaluator |>
     evaluate(arguments)
@@ -134,12 +158,15 @@ test_that("validation against JPMML evaluator works", {
 
   ### svm
   library(e1071)
+  mod_file_svm <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_svm), add = TRUE)
+  
   fit <- svm(Species ~ ., data = iris)
   fit_pmml <- pmml(fit)
-  save_pmml(fit_pmml, "model_svm.pmml")
+  save_pmml(fit_pmml, mod_file_svm)
 
   evaluator <- newLoadingModelEvaluatorBuilder() |>
-    loadFile("model_svm.pmml") |>
+    loadFile(mod_file_svm) |>
     build()
 
   evaluator <- evaluator |>
@@ -148,6 +175,7 @@ test_that("validation against JPMML evaluator works", {
   val_R <- as.character(predict(fit, iris[1, ]))
 
   arguments <- as.list(iris[1, ])
+  arguments$Species <- as.character(arguments$Species)
 
   val_JPMML <- evaluator |>
     evaluate(arguments)
@@ -156,53 +184,65 @@ test_that("validation against JPMML evaluator works", {
 
   ### xgboost
   library(xgboost)
-  # Temp file for xgboost dump
-  xgb_dump <- tempfile()
+  data(iris)
+  # Binary classification for simplicity
+  iris_bin <- iris[iris$Species != "virginica", ]
+  iris_bin$Species <- factor(as.character(iris_bin$Species))
+  
   fit <- xgb.train(
     params = list(max_depth = 2, eta = 1, objective = "binary:logistic"),
-    data = xgb.DMatrix(data = as.matrix(audit[1:100, c(2, 7, 9, 10, 12)]), label = audit[1:100, 13]),
+    data = xgb.DMatrix(data = as.matrix(iris_bin[, 1:4]), label = as.numeric(iris_bin$Species) - 1),
     nrounds = 2
   )
+  
+  xgb_dump <- tempfile()
+  on.exit(unlink(xgb_dump), add = TRUE)
   xgb.dump(fit, xgb_dump)
 
+  mod_file_xgb <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_xgb), add = TRUE)
+  
   fit_pmml <- pmml(fit,
-    input_feature_names = colnames(audit[, c(2, 7, 9, 10, 12)]),
-    output_label_name = "Adjusted",
-    output_categories = c(0, 1), xgb_dump_file = xgb_dump
+    input_feature_names = colnames(iris_bin)[1:4],
+    output_label_name = "Species",
+    output_categories = levels(iris_bin$Species), 
+    xgb_dump_file = xgb_dump
   )
-  save_pmml(fit_pmml, "model_xgb.pmml")
+  save_pmml(fit_pmml, mod_file_xgb)
 
   evaluator <- newLoadingModelEvaluatorBuilder() |>
-    loadFile("model_xgb.pmml") |>
+    loadFile(mod_file_xgb) |>
     build()
 
   evaluator <- evaluator |>
     verify()
 
   # Check prediction for first row
-  val_R <- as.character(ifelse(predict(fit, as.matrix(audit[1, c(2, 7, 9, 10, 12)])) > 0.5, 1, 0))
+  val_R <- as.character(predict(fit, as.matrix(iris_bin[1, 1:4])))
+  # Result from predict is probability for class 1
+  val_R_label <- levels(iris_bin$Species)[ifelse(val_R > 0.5, 2, 1)]
 
-  arguments <- as.list(audit[1, c(2, 7, 9, 10, 12)])
-  # Ensure types match
-  arguments$Age <- as.numeric(arguments$Age)
-  arguments$Income <- as.numeric(arguments$Income)
-  arguments$Deductions <- as.numeric(arguments$Deductions)
-  arguments$Hours <- as.numeric(arguments$Hours)
-  arguments$Education <- as.numeric(arguments$Education) # Check if numeric or factor? Audit Educ is factor?
+  arguments <- as.list(iris_bin[1, 1:4])
+  # Ensure all are numeric
+  arguments <- lapply(arguments, as.numeric)
 
   val_JPMML <- evaluator |>
     evaluate(arguments)
 
-  expect_equal(val_R, as.character(val_JPMML$Predicted_Adjusted))
+  expect_equal(val_R_label, as.character(val_JPMML$Predicted_Species))
 
   ### Arima
+  skip("JPMML evaluator does not support ARIMA elements yet")
   library(forecast)
+  mod_file_arima <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_arima), add = TRUE)
+  
   fit <- Arima(WWWusage, order = c(2, 0, 2))
   fit_pmml <- pmml(fit, ts_type = "arima")
-  save_pmml(fit_pmml, "model_arima.pmml")
+  save_pmml(fit_pmml, mod_file_arima)
 
   evaluator <- newLoadingModelEvaluatorBuilder() |>
-    loadFile("model_arima.pmml") |>
+    loadFile(mod_file_arima) |>
     build()
 
   evaluator <- evaluator |>
@@ -220,12 +260,15 @@ test_that("validation against JPMML evaluator works", {
 
   ### kmeans
   library(clue)
+  mod_file_kmeans <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_kmeans), add = TRUE)
+  
   fit <- kmeans(iris[, 1:4], 3)
   fit_pmml <- pmml(fit)
-  save_pmml(fit_pmml, "model_kmeans.pmml")
+  save_pmml(fit_pmml, mod_file_kmeans)
 
   evaluator <- newLoadingModelEvaluatorBuilder() |>
-    loadFile("model_kmeans.pmml") |>
+    loadFile(mod_file_kmeans) |>
     build()
 
   evaluator <- evaluator |>
@@ -234,6 +277,8 @@ test_that("validation against JPMML evaluator works", {
   val_R <- as.character(cl_predict(fit, iris[1, 1:4]))
 
   arguments <- as.list(iris[1, 1:4])
+  # Ensure consistent types
+  arguments <- lapply(arguments, as.numeric)
 
   val_JPMML <- evaluator |>
     evaluate(arguments)
@@ -242,12 +287,15 @@ test_that("validation against JPMML evaluator works", {
 
   ### glmnet
   library(glmnet)
+  mod_file_glmnet <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_glmnet), add = TRUE)
+  
   fit <- cv.glmnet(data.matrix(iris[1:4]), data.matrix(iris[5]))
   fit_pmml <- pmml(fit)
-  save_pmml(fit_pmml, "model_glmnet.pmml")
+  save_pmml(fit_pmml, mod_file_glmnet)
 
   evaluator <- newLoadingModelEvaluatorBuilder() |>
-    loadFile("model_glmnet.pmml") |>
+    loadFile(mod_file_glmnet) |>
     build()
 
   evaluator <- evaluator |>
@@ -269,12 +317,15 @@ test_that("validation against JPMML evaluator works", {
     new_field_name = "Sepal_Length_Squared",
     expression = "Sepal.Length * Sepal.Length"
   )
+  mod_file_transf <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_transf), add = TRUE)
+  
   fit <- lm(Petal.Width ~ Sepal.Length + Sepal_Length_Squared, data = box_obj$data)
   fit_pmml <- pmml(fit, transforms = box_obj)
-  save_pmml(fit_pmml, "model_transf.pmml")
+  save_pmml(fit_pmml, mod_file_transf)
 
   evaluator <- newLoadingModelEvaluatorBuilder() |>
-    loadFile("model_transf.pmml") |>
+    loadFile(mod_file_transf) |>
     build()
 
   evaluator <- evaluator |>
@@ -288,18 +339,4 @@ test_that("validation against JPMML evaluator works", {
     evaluate(arguments)
 
   expect_equal(val_R, as.numeric(val_JPMML$Predicted_Petal.Width))
-
-  ### cleanup
-  file.remove("model.pmml")
-  file.remove("model_rpart.pmml")
-  file.remove("model_rf.pmml")
-  file.remove("model_glm.pmml")
-  file.remove("model_multinom.pmml")
-  file.remove("model_svm.pmml")
-  file.remove("model_xgb.pmml")
-  file.remove("model_arima.pmml")
-  file.remove("model_kmeans.pmml")
-  file.remove("model_glmnet.pmml")
-  file.remove("model_transf.pmml")
-  unlink(xgb_dump)
 })
