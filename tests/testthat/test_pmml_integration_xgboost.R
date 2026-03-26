@@ -1,4 +1,3 @@
-skip_if_not_installed("zementisr")
 
 data(iris)
 data(audit)
@@ -22,7 +21,6 @@ teardown(unlink(c(xgb_tmp_01_save, xgb_tmp_01_dump), recursive = TRUE))
 test_that("MiningModel/xgboost PMML output matches R", {
   skip_on_cran()
   skip_on_ci()
-
   skip_if_not_installed("xgboost")
   skip_if_not_installed("zementisr")
   library(xgboost)

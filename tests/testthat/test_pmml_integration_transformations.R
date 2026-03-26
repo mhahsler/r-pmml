@@ -1,4 +1,3 @@
-skip_if_not_installed("zementisr")
 
 #Additional tests with transformations
 
@@ -22,6 +21,7 @@ test_that("Transformations PMML output matches R", {
   skip_on_ci()
 
   skip_if_not_installed("rpart")
+  skip_if_not_installed("zementisr")
   library(zementisr)
   library(rpart)
 
@@ -323,6 +323,7 @@ test_that("Transformations PMML matches R 2", {
 
   skip_if_not_installed("randomForest")
   library(randomForest)
+  skip_if_not_installed("zementisr")
   library(zementisr)
   iris_box_1 <- xform_wrap(iris)
 
@@ -356,6 +357,7 @@ test_that("Using box data with no transforms matches", {
   skip_on_cran()
   skip_on_ci()
 
+  skip_if_not_installed("zementisr")
   library(zementisr)
 
   iris_box_1 <- xform_wrap(iris)
@@ -379,6 +381,7 @@ test_that("Transformation preserves numeric when input is unchanged", {
   skip_on_cran()
   skip_on_ci()
 
+  skip_if_not_installed("zementisr")
   library(zementisr)
 
   iris_box_1 <- xform_wrap(iris)
@@ -409,6 +412,7 @@ test_that("Transformation preserves factor when input is unchanged", {
   skip_on_cran()
   skip_on_ci()
 
+  skip_if_not_installed("zementisr")
   library(zementisr)
 
   iris_box_1 <- xform_wrap(iris)
@@ -442,6 +446,7 @@ test_that("Transformation preserves factor names when input is numeric", {
   skip_on_cran()
   skip_on_ci()
 
+  skip_if_not_installed("zementisr")
   library(zementisr)
   iris_box_5 <- xform_wrap(iris)
   iris_box_5 <- xform_function(
@@ -471,6 +476,7 @@ test_that("PMML matches R with multiple xform_function transformations - 1", {
   skip_on_cran()
   skip_on_ci()
 
+  skip_if_not_installed("zementisr")
   library(zementisr)
 
   iris_box_1 <- xform_wrap(iris)
