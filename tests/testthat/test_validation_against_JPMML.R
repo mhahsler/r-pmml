@@ -1,6 +1,6 @@
 test_that("validation against JPMML evaluator works", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   # Test against the JPMML Evaluator
   # https://github.com/jpmml/jpmml-evaluator-r
@@ -339,4 +339,186 @@ test_that("validation against JPMML evaluator works", {
     evaluate(arguments)
 
   expect_equal(val_R, as.numeric(val_JPMML$Predicted_Petal.Width))
+
+  ### gbm
+  library(gbm)
+  mod_file_gbm <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_gbm), add = TRUE)
+  
+  fit <- gbm(Sepal.Length ~ ., data = iris, distribution = "gaussian", n.trees = 10)
+  fit_pmml <- pmml(fit)
+  save_pmml(fit_pmml, mod_file_gbm)
+
+  evaluator <- newLoadingModelEvaluatorBuilder() |>
+    loadFile(mod_file_gbm) |>
+    build()
+
+  evaluator <- evaluator |>
+    verify()
+
+  val_R <- predict(fit, iris[1, ], n.trees = 10)
+
+  arguments <- as.list(iris[1, ])
+  arguments$Species <- as.character(arguments$Species)
+
+  val_JPMML <- evaluator |>
+    evaluate(arguments)
+
+  expect_equal(val_R, as.numeric(val_JPMML$predictedValue))
+
+  ### naiveBayes
+  library(e1071)
+  mod_file_nb <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_nb), add = TRUE)
+  
+  fit <- naiveBayes(Species ~ ., data = iris)
+  fit_pmml <- pmml(fit)
+  save_pmml(fit_pmml, mod_file_nb)
+
+  evaluator <- newLoadingModelEvaluatorBuilder() |>
+    loadFile(mod_file_nb) |>
+    build()
+
+  evaluator <- evaluator |>
+    verify()
+
+  val_R <- as.character(predict(fit, iris[1, ]))
+
+  arguments <- as.list(iris[1, ])
+  # Ensure all numeric fields are properly typed
+  arguments[1:4] <- lapply(arguments[1:4], as.numeric)
+
+  val_JPMML <- evaluator |>
+    evaluate(arguments)
+
+  expect_equal(val_R, as.character(val_JPMML$Predicted_Species))
+
+  ### ksvm
+  library(kernlab)
+  mod_file_ksvm <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_ksvm), add = TRUE)
+  
+  fit <- ksvm(Species ~ ., data = iris)
+  fit_pmml <- pmml(fit)
+  save_pmml(fit_pmml, mod_file_ksvm)
+
+  evaluator <- newLoadingModelEvaluatorBuilder() |>
+    loadFile(mod_file_ksvm) |>
+    build()
+
+  evaluator <- evaluator |>
+    verify()
+
+  val_R <- as.character(predict(fit, iris[1, ]))
+
+  arguments <- as.list(iris[1, ])
+
+  val_JPMML <- evaluator |>
+    evaluate(arguments)
+
+  expect_equal(val_R, as.character(val_JPMML$Predicted_Species))
+
+  ### ada
+  library(ada)
+  mod_file_ada <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_ada), add = TRUE)
+  
+  # Binary iris for ada
+  iris_bin <- iris[iris$Species != "virginica", ]
+  iris_bin$Species <- factor(as.character(iris_bin$Species))
+  
+  fit <- ada(Species ~ ., data = iris_bin, iter = 5)
+  fit_pmml <- pmml(fit)
+  save_pmml(fit_pmml, mod_file_ada)
+
+  evaluator <- newLoadingModelEvaluatorBuilder() |>
+    loadFile(mod_file_ada) |>
+    build()
+
+  evaluator <- evaluator |>
+    verify()
+
+  val_R <- as.character(predict(fit, iris_bin[1, ]))
+
+  arguments <- as.list(iris_bin[1, ])
+
+  val_JPMML <- evaluator |>
+    evaluate(arguments)
+
+  expect_equal(val_R, as.character(val_JPMML$Predicted_Species))
+
+  ### arules (rules)
+  library(arules)
+  data("Adult")
+  # Use a small set of rules
+  rules <- apriori(Adult, parameter = list(support = 0.5, confidence = 0.9, target = "rules"))
+  mod_file_rules <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_rules), add = TRUE)
+  
+  fit_pmml <- pmml(rules)
+  save_pmml(fit_pmml, mod_file_rules)
+
+  # JPMML handles AssociationRules differently, verification is more complex.
+  # We just check if it loads for now as a smoke test.
+  evaluator <- newLoadingModelEvaluatorBuilder() |>
+    loadFile(mod_file_rules) |>
+    build()
+
+  evaluator <- evaluator |>
+    verify()
+  
+  expect_true(inherits(evaluator, "jobjRef"))
+
+  ### neighbr
+  library(neighbr)
+  mod_file_knn <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_knn), add = TRUE)
+  
+  fit <- knn(train_set = iris[1:100, ], test_set = iris[101:101, ], 
+             k = 3, categorical_target = "Species", comparison_measure = "euclidean")
+  fit_pmml <- pmml(fit)
+  save_pmml(fit_pmml, mod_file_knn)
+
+  evaluator <- newLoadingModelEvaluatorBuilder() |>
+    loadFile(mod_file_knn) |>
+    build()
+
+  evaluator <- evaluator |>
+    verify()
+
+  val_R <- as.character(fit$test_set_predictions)
+
+  arguments <- as.list(iris[101, 1:4])
+  
+  val_JPMML <- evaluator |>
+    evaluate(arguments)
+
+  expect_equal(val_R, as.character(val_JPMML$Predicted_Species))
+
+  ### isofor (Isolation Forest)
+  skip_if_not_installed("isofor")
+  library(isofor)
+  mod_file_if <- tempfile(fileext = ".pmml")
+  on.exit(unlink(mod_file_if), add = TRUE)
+  
+  fit <- iForest(iris[, 1:4], nt = 10)
+  fit_pmml <- pmml(fit)
+  save_pmml(fit_pmml, mod_file_if)
+
+  evaluator <- newLoadingModelEvaluatorBuilder() |>
+    loadFile(mod_file_if) |>
+    build()
+
+  evaluator <- evaluator |>
+    verify()
+
+  # JPMML typically returns anomalyScore and/or isAnomaly
+  val_R_score <- predict(fit, iris[1, 1:4])
+
+  arguments <- as.list(iris[1, 1:4])
+  
+  val_JPMML <- evaluator |>
+    evaluate(arguments)
+
+  expect_true(any(grepl("anomaly", names(val_JPMML), ignore.case = TRUE)))
 })
