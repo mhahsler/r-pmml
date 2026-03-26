@@ -1,0 +1,38 @@
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+name: devtools-tests-via-nix
+
+permissions:
+  contents: read
+
+jobs:
+  devtools_test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create .Renviron
+        run: |
+          echo "GITHUB_PAT=${{ secrets.GITHUB_TOKEN }}" >> ~/.Renviron
+        shell: bash
+
+      - uses: cachix/install-nix-action@v31
+        with:
+          nix_path: nixpkgs=https://github.com/rstats-on-nix/nixpkgs/archive/refs/heads/r-daily.tar.gz
+
+      - uses: cachix/cachix-action@v14
+        with:
+          name: rstats-on-nix
+
+      - name: Build and Test via nix-shell
+        run: |
+          nix-shell --quiet --pure --run "Rscript -e 'sessionInfo(); devtools::test(stop_on_failure = TRUE)'"
