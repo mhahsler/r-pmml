@@ -1,44 +1,43 @@
-skip_on_cran()
-skip_on_ci()
+test_that("validation against JPMML evaluator works", {
+  skip_on_cran()
+  skip_on_ci()
+  skip_if_not_installed("jpmml")
 
-# Test against the JPMML Evaluator
-# https://github.com/jpmml/jpmml-evaluator-r
-#
-# Installation:
-# devtools::install_github("jpmml/jpmml-evaluator-r")
+  library("jpmml")
 
-skip_if_not_installed("jpmml")
+  # Test against the JPMML Evaluator
+  # https://github.com/jpmml/jpmml-evaluator-r
+  #
+  # Installation:
+  # devtools::install_github("jpmml/jpmml-evaluator-r")
 
-library("jpmml")
+  ### lm
+  data(iris)
+  fit <- lm(Sepal.Length ~ ., data = iris)
+  fit_pmml <- pmml(fit)
+  save_pmml(fit_pmml, "model.pmml")
 
+  evaluator <- newLoadingModelEvaluatorBuilder() |>
+    loadFile("model.pmml") |>
+    build()
 
-### lm
-data(iris)
-fit <- lm(Sepal.Length ~ ., data = iris)
-fit_pmml <- pmml(fit)
-save_pmml(fit_pmml, "model.pmml")
+  evaluator <- evaluator |>
+    verify()
 
-evaluator <- newLoadingModelEvaluatorBuilder() |>
-  loadFile("model.pmml") |>
-  build()
+  val_R <- unname(predict(fit, as.list(iris[1, ])))
 
-evaluator <- evaluator |>
-  verify()
+  arguments <- as.list(iris[1, ])
+  arguments$Species <- as.character(arguments$Species)
 
-val_R <- unname(predict(fit, as.list(iris[1,])))
-  
-arguments <- as.list(iris[1,])
-arguments$Species <- as.character(arguments$Species)
+  val_JPMML <- evaluator |>
+    evaluate(arguments)
 
-val_JPMML <- evaluator |>
-  evaluate(arguments)
+  expect_equal(val_R, val_JPMML$Predicted_Sepal.Length)
 
-expect_equal(val_R, val_JPMML$Predicted_Sepal.Length)
+  ## Add tests for all other models supported by JPMML
 
-## Add tests for all other models supported by JPMML
+  message("TODO: Implement more tests")
 
-message("TODO: Implement more tests")
-
-
-### cleanup
-file.remove("model.pmml")
+  ### cleanup
+  file.remove("model.pmml")
+})
