@@ -123,5 +123,5 @@ fit_pmml <- pmml(fit)
 }
 \seealso{
 \code{\link[pmml]{pmml}},
-\href{http://dmg.org/pmml/v4-4-1/KNN.html}{PMML KNN specification}
+\href{https://dmg.org/pmml/v4-4-1/KNN.html}{PMML KNN specification}
 }

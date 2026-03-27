@@ -130,7 +130,7 @@ model2_pmml <- pmml(model2,
 }
 \seealso{
 \code{\link[pmml]{pmml}},
-\href{http://dmg.org/pmml/v4-4-1/GeneralStructure.html}{PMML schema}
+\href{https://dmg.org/pmml/v4-4-1/GeneralStructure.html}{PMML schema}
 }
 \author{
 Tridivesh Jena

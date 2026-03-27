@@ -1,8 +1,8 @@
 Package: pmml
 Type: Package
 Title: Generate PMML for Various Models
-Version: 2.6.0
-Date: 2026-03-24
+Version: 2.6.0-1
+Date: 2026-xx-xx
 Authors@R: c(
     person("Michael", "Hahsler", email = "mhahsler@lyle.smu.edu", role = c("aut", "cre")),
     person("Bruno", "Rodrigues", role = "aut"),
@@ -26,6 +26,7 @@ Suggests:
     forecast,
     gbm,
     glmnet,
+    magrittr,
     Matrix,
     neighbr,
     nnet,
@@ -47,7 +48,7 @@ Imports:
     utils,
     stringr
 License: GPL-3 | file LICENSE
-Description: The Predictive Model Markup Language (PMML) is an XML-based language which provides a way for applications to define machine learning, statistical and data mining models and to share models between PMML compliant applications. More information about the PMML industry standard and the Data Mining Group can be found at <http://dmg.org/>. The generated PMML can be imported into any PMML consuming application.
+Description: The Predictive Model Markup Language (PMML) is an XML-based language which provides a way for applications to define machine learning, statistical and data mining models and to share models between PMML compliant applications. More information about the PMML industry standard and the Data Mining Group can be found at <https://dmg.org/>. The generated PMML can be imported into any PMML consuming application, such as Zementis Predictive Analytics products.
 URL: https://github.com/mhahsler/r-pmml
 BugReports: https://github.com/mhahsler/r-pmml/issues
 NeedsCompilation: no
