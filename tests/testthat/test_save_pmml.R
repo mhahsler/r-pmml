@@ -1,7 +1,7 @@
 tmp_file <- tempfile()
 teardown(unlink(tmp_file))
 
-test_that("save_pmml() does not output marker for Zementis Server", {
+test_that("save_pmml() does not output extra markers", {
   iris_lm <- lm(Sepal.Length ~ ., data = iris)
   iris_lm_pmml <- pmml(iris_lm)
   save_pmml(iris_lm_pmml, tmp_file)

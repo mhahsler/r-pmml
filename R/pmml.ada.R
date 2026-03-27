@@ -1,7 +1,6 @@
 # PMML: Predictive Model Markup Language
 #
-# Copyright (c) 2009-2016, Zementis, Inc.
-# Copyright (c) 2016-2021, Software AG, Darmstadt, Germany and/or Software AG
+# # Copyright (c) 2016-2021, Software AG, Darmstadt, Germany and/or Software AG
 # USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates
 # and/or their licensors.
 #
@@ -82,9 +81,9 @@ pmml.ada <- function(model,
   noTargetFields$name <- as.character(attr(model$terms, "variables"))[-1]
   noTargetFields$class <- attr(model$terms, "dataClasses")
 
-  noTargetFields$name[1] <- "ZementisHiddenTargetField"
+  noTargetFields$name[1] <- "HiddenTargetField"
   noTargetFields$class[1] <- "numeric"
-  names(noTargetFields$class)[1] <- "ZementisHiddenTargetField"
+  names(noTargetFields$class)[1] <- "HiddenTargetField"
 
   target <- as.character(attr(model$terms, "variables"))[-1][1]
   target <- .removeAsFactor(target)
@@ -109,7 +108,7 @@ pmml.ada <- function(model,
 
   # Even though ADA is a binary classifier, we set the functionName as regression here.
   # This is because the output category needs to be obtained through post-processing
-  # the raw numeric Zementis output, the weighted sum of each small tree.
+  # the raw numeric PMML output, the weighted sum of each small tree.
 
   functionName <- "regression"
   xmlModel <- xmlNode("MiningModel",

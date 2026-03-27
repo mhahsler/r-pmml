@@ -302,7 +302,7 @@ For functions that use a dots (`...`) parameter, the old parameters will still b
   
   * Fix spelling error in DESCRIPTION - CRAN check found it.
   
-  * Various updates from Zementis to the randomForest schema.  All the
+  * Various updates from Software AG to the randomForest schema.  All the
     mining schemas in each segment of the random forest now also output
     the attribute invalidValueTreatment as asis.
   
@@ -313,7 +313,7 @@ For functions that use a dots (`...`) parameter, the old parameters will still b
 
 # rattle 1.2.27
   
-  * Bug fixes to ksvm model from Zementis and Graham
+  * Bug fixes to ksvm model from Software AG and Graham
   
  -- Graham Williams <Graham.Williams@togaware.com>  Thu, 06 Jan 2011 06:43:50 +1100
   
@@ -373,7 +373,7 @@ For functions that use a dots (`...`) parameter, the old parameters will still b
   
 # rattle 1.2.17
   
-  * Zementis: add Output node.
+  * Software AG: add Output node.
   
  -- Graham Williams <Graham.Williams@togaware.com>  Thu, 06 Jan 2011 06:43:50 +1100
   
@@ -547,7 +547,7 @@ For functions that use a dots (`...`) parameter, the old parameters will still b
   
 # rattle 1.1.9
   
-  * Update rpart/nnet/ksvm from Zementis + many improvements
+  * Update rpart/nnet/ksvm from Software AG + many improvements
   
  -- Graham Williams <Graham.Williams@togaware.com>  Thu, 06 Jan 2011 06:43:50 +1100
   
