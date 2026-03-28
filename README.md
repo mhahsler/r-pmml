@@ -7,8 +7,11 @@
 CRAN](https://www.r-pkg.org/badges/version/pmml)](https://CRAN.R-project.org/package=pmml)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/pmml)](https://CRAN.R-project.org/package=pmml)
-![License](https://img.shields.io/cran/l/pmml) [![r-universe
+![License](https://img.shields.io/cran/l/pmml)
+[![Anaconda.org](https://anaconda.org/conda-forge/r-pmml/badges/version.svg)](https://anaconda.org/conda-forge/r-pmml)
+[![r-universe
 status](https://mhahsler.r-universe.dev/badges/pmml)](https://mhahsler.r-universe.dev/pmml)
+[![StackOverflow](https://img.shields.io/badge/stackoverflow-pmml%20R-orange.svg)](https://stackoverflow.com/questions/tagged/pmml%20R)
 
 **This is the official home for the R package pmml (starting with
 version pmml_2.6.0).** Previous versions can be found at
@@ -109,7 +112,7 @@ iris_lm_pmml
 #>  <Header copyright="Copyright (c) 2026 mhahsler" description="Linear Regression Model">
 #>   <Extension name="user" value="mhahsler" extender="R PMML Generator - Package pmml"/>
 #>   <Application name="R PMML Generator - Package pmml" version="2.6.0.1"/>
-#>   <Timestamp>2026-03-26 14:47:02.442142</Timestamp>
+#>   <Timestamp>2026-03-28 18:37:00.698143</Timestamp>
 #>  </Header>
 #>  <DataDictionary numberOfFields="5">
 #>   <DataField name="Sepal.Length" optype="continuous" dataType="double"/>

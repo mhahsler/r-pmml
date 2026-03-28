@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 pkg <- "pmml"
 
 source("https://raw.githubusercontent.com/mhahsler/pkg_helpers/main/pkg_helpers.R")
-pkg_title(pkg)  
+pkg_title(pkg,  anaconda = "r-pmml", stackoverflow = "pmml R")  
 ```
 
 **This is the official home for the R package pmml (starting with version pmml_2.6.0).**
