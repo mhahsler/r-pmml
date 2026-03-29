@@ -1,7 +1,6 @@
 # PMML: Predictive Model Markup Language
 #
-# Copyright (c) 2009-2016, Zementis, Inc.
-# Copyright (c) 2016-2021, Software AG, Darmstadt, Germany and/or Software AG
+# # Copyright (c) 2016-2021, Software AG, Darmstadt, Germany and/or Software AG
 # USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates
 # and/or their licensors.
 #
@@ -90,9 +89,9 @@ pmml.hclust <- function(model,
   names(field$class) <- field$name
 
   field2 <- NULL
-  field2$name[1] <- "ZementisClusterIDPlaceHolder"
+  field2$name[1] <- "ClusterIDPlaceHolder"
   field2$class[1] <- "ID"
-  names(field2$class)[1] <- "ZementisClusterIDPlaceHolder"
+  names(field2$class)[1] <- "ClusterIDPlaceHolder"
   for (i in 1:number.of.fields)
   {
     field2$name[i + 1] <- field$name[i]

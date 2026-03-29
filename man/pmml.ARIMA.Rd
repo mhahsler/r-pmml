@@ -64,7 +64,7 @@ OutputField elements are exported with
 dataType "string", and contain a collection of all values up to and including the steps-ahead value supplied
 during scoring.
 String output in this form is facilitated by Extension elements in the PMML file,
-and is supported by Zementis Server since version 10.6.0.0.
+and is supported by some PMML servers since version 10.6.0.0.
 
 \code{cpi_levels} behaves similar to \code{levels} in \code{forecast::forecast}: values must be
 between 0 and 100, non-inclusive.

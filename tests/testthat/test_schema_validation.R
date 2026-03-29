@@ -133,7 +133,7 @@ schema <- XML::xmlSchemaParse("pmml-4-4.xsd") # updated schema includes Observat
 
 test_that("TimeSeries/Arima PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("forecast")
   library(forecast)
@@ -181,7 +181,7 @@ test_that("TimeSeries/Arima PMML validates against schema", {
 
 test_that("AnomalyDetectionModel/iForest PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("isofor")
   library(isofor)
@@ -202,7 +202,7 @@ test_that("AnomalyDetectionModel/iForest PMML validates against schema", {
 
 test_that("ClusteringModel/stats kmeans PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
   
   skip_if_not_installed("clue")
   library(clue)
@@ -246,7 +246,7 @@ test_that("ClusteringModel/stats kmeans PMML validates against schema", {
 
 test_that("GeneralRegressionModel/glmnet PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("glmnet")
   library(glmnet)
@@ -341,7 +341,7 @@ test_that("GeneralRegressionModel/glmnet PMML validates against schema", {
 
 test_that("GeneralRegressionModel/stats PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   # Suppress warning: "glm.fit: fitted probabilities numerically 0 or 1 occurred"
   suppressWarnings(fit <- glm(
@@ -424,7 +424,7 @@ test_that("GeneralRegressionModel/stats PMML validates against schema", {
 
 test_that("MiningModel/ada PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("ada")
   library(ada)
@@ -456,7 +456,7 @@ test_that("MiningModel/ada PMML validates against schema", {
 
 test_that("MiningModel/gbm PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("gbm")
   library(gbm)
@@ -498,7 +498,7 @@ test_that("MiningModel/gbm PMML validates against schema", {
 
 test_that("MiningModel/randomForest PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("randomForest")
   library(randomForest)
@@ -601,7 +601,7 @@ test_that("MiningModel/randomForest PMML validates against schema", {
 
 test_that("MiningModel/xgboost PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("xgboost")
   library(xgboost)
@@ -785,7 +785,7 @@ test_that("MiningModel/xgboost PMML validates against schema", {
 
 test_that("NaiveBayesModel/e1071 PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("e1071")
   library(e1071)
@@ -923,7 +923,7 @@ test_that("NaiveBayesModel/e1071 PMML validates against schema", {
 
 test_that("NearestNeighborModel/neighbr PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("neighbr")
   library(neighbr)
@@ -998,7 +998,7 @@ test_that("NearestNeighborModel/neighbr PMML validates against schema", {
 
 test_that("NeuralNetwork/nnet PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("nnet")
   library(nnet)
@@ -1035,7 +1035,7 @@ test_that("NeuralNetwork/nnet PMML validates against schema", {
 
 test_that("RegressionModel/nnet PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("nnet")
   library(nnet)
@@ -1067,7 +1067,7 @@ test_that("RegressionModel/nnet PMML validates against schema", {
 
 test_that("RegressionModel/stats PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   fit <- lm(Sepal.Length ~ ., data = iris)
   expect_equal(validate_pmml(pmml(fit), schema), 0)
@@ -1136,7 +1136,7 @@ test_that("RegressionModel/stats PMML validates against schema", {
 
 test_that("AnomalyDetectionModel/e1071 one-classification PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("e1071")
   library(e1071)
@@ -1183,7 +1183,7 @@ test_that("AnomalyDetectionModel/e1071 one-classification PMML validates against
 
 test_that("SupportVectorMachineModel/e1071 PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("e1071")
   library(e1071)
@@ -1419,7 +1419,7 @@ test_that("SupportVectorMachineModel/e1071 PMML validates against schema", {
 
 test_that("SupportVectorMachineModel/kernlab PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("kernlab")
   library(kernlab)
@@ -1500,7 +1500,7 @@ test_that("SupportVectorMachineModel/kernlab PMML validates against schema", {
 
 test_that("TreeModel/rpart PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   skip_if_not_installed("rpart")
   library(rpart)
@@ -1530,7 +1530,7 @@ test_that("TreeModel/rpart PMML validates against schema", {
 
 test_that("Transformations PMML validates against schema", {
   skip_on_cran()
-  skip_on_ci()
+  if (Sys.which("nix") == "" && Sys.getenv("IN_NIX_SHELL") == "") skip("Nix not available")
 
   box_obj <- xform_wrap(iris_p)
   box_obj <- xform_function(box_obj,

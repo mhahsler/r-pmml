@@ -1,7 +1,6 @@
 # PMML: Predictive Model Markup Language
 #
-# Copyright (c) 2009-2016, Zementis, Inc.
-# Copyright (c) 2016-2021, Software AG, Darmstadt, Germany and/or Software AG
+# # Copyright (c) 2016-2021, Software AG, Darmstadt, Germany and/or Software AG
 # USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates
 # and/or their licensors.
 #
@@ -21,7 +20,7 @@
 .pmmlDataDictionary <- function(field, dataset = NULL, weights = NULL, transformed = NULL, target = NULL) {
   number.of.fields <- length(field$name)
 
-  if (field$name[1] == "ZementisClusterIDPlaceHolder" || field$name[1] == "ZementisHiddenTargetField") {
+  if (field$name[1] == "ClusterIDPlaceHolder" || field$name[1] == "HiddenTargetField") {
     begin <- 2
   } else {
     begin <- 1
@@ -140,7 +139,7 @@
         optypelist[[fName]] <- "categorical"
       }
 
-      if (!(fName %in% namelist) && fName != "ZementisClusterIDPlaceHolder") {
+      if (!(fName %in% namelist) && fName != "ClusterIDPlaceHolder") {
         namelist <- c(namelist, fName)
       }
     }
@@ -231,7 +230,7 @@
   datypelist <- list()
   data.fields <- list()
 
-  if (field$name[1] == "ZementisClusterIDPlaceHolder") {
+  if (field$name[1] == "ClusterIDPlaceHolder") {
     begin <- 2
   } else {
     begin <- 1
