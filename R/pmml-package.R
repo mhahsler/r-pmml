@@ -50,7 +50,7 @@
 #' provides a way for applications to define machine learning, statistical and
 #' data mining models and to share models between PMML compliant applications.
 #' More information about the PMML industry standard and the Data Mining Group
-#' can be found at <https://www.dmg.org>. The generated PMML can be imported
+#' can be found at <https://dmg.org>. The generated PMML can be imported
 #' into any PMML consuming application, such as Zementis Predictive Analytics
 #' products, which integrate with web services, relational database systems and
 #' deploy natively on Hadoop in conjunction with Hive, Spark or Storm, as well

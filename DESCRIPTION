@@ -28,7 +28,6 @@ Suggests:
     glmnet,
     magrittr,
     Matrix,
-    neighbr,
     nnet,
     rpart,
     randomForest,
