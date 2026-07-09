@@ -88,7 +88,7 @@
 #' [pmml.glm()], [pmml.hclust()],
 #' [pmml.kmeans()], [pmml.ksvm()], [pmml.lm()],
 #' [pmml.multinom()], [pmml.naiveBayes()],
-#' [pmml.neighbr()], [pmml.nnet()],
+#' [pmml.nnet()],
 #' [pmml.rpart()], [pmml.svm()],
 #' [pmml.xgb.Booster()]
 #' @references

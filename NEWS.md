@@ -1,8 +1,10 @@
 # pmml 2.6.1 (07/09/2026)
 
-## Updates
+## Changes
+* package neighbr was removed from CRAN.
 * Removed expected warning after gbm update.
 * glmnet 5.1: Cox tie-handling creates a warning. We pass pass cox.ties = 'breslow' explicitly.
+
 
 # pmml 2.6.0 (03/26/2026)
 
