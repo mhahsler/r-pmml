@@ -21,7 +21,7 @@ pkg_title(pkg,  anaconda = "r-pmml", stackoverflow = "pmml R")
 ```
 
 **This is the official home for the R package pmml (starting with version pmml_2.6.0).**
-Previous versions can be found at [here.](https://github.com/Cumulocity-IoT/r-pmml)
+Previous versions can be found [here.](https://github.com/Cumulocity-IoT/r-pmml)
 
 
 ## Overview
@@ -67,18 +67,9 @@ Supported packages:
 
 For a description of the supported packages, see the vignette: [Supported Packages and Additional Functions](https://mhahsler.r-universe.dev/articles/pmml/packages_and_functions.html).
 
-## Related Packages
-
-### Java
-The Java library [JMML](https://github.com/jpmml) 
-can be used to read and execute models stored in PMML format. 
-An R interface to the library to create PMML models is called [r2pmml](https://CRAN.R-project.org/package=r2pmml) and available from CRAN.
-An R interface for the evaluator, called [jpmml](https://github.com/jpmml/jpmml-evaluator-r),
-can be installed from Github.
-
-### Python
-[sklearn-pmml-model](https://github.com/iamDecode/sklearn-pmml-model)
-can import models trained on R into Python's scikit-learn framework.
+```{r echo=FALSE, results = 'asis'}
+pkg_citation(pkg, 1)
+```
 
 
 ```{r echo=FALSE, results = 'asis'}
@@ -103,6 +94,20 @@ iris_lm_pmml
 # Write to file: 
 # save_pmml(iris_lm_pmml,"iris_lm.pmml")
 ```
+
+## Related Packages
+
+### Java
+The Java library [JMML](https://github.com/jpmml) 
+can be used to read and execute models stored in PMML format. 
+An R interface to the library to create PMML models is called [r2pmml](https://CRAN.R-project.org/package=r2pmml) and available from CRAN.
+An R interface for the evaluator, called [jpmml](https://github.com/jpmml/jpmml-evaluator-r),
+can be installed from Github.
+
+### Python
+[sklearn-pmml-model](https://github.com/iamDecode/sklearn-pmml-model)
+can import models trained on R into Python's scikit-learn framework.
+
 
 ## References
 - [DMG PMML 4.4.1 specification](https://dmg.org/pmml/v4-4-1/GeneralStructure.html)

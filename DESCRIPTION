@@ -1,8 +1,8 @@
 Package: pmml
 Type: Package
 Title: Generate PMML for Various Models
-Version: 2.6.0-1
-Date: 2026-xx-xx
+Version: 2.6.1
+Date: 2026-07-07
 Authors@R: c(
     person("Michael", "Hahsler", email = "mhahsler@lyle.smu.edu", role = c("aut", "cre")),
     person("Bruno", "Rodrigues", role = "aut"),
@@ -52,6 +52,7 @@ Description: The Predictive Model Markup Language (PMML) is an XML-based languag
 URL: https://github.com/mhahsler/r-pmml
 BugReports: https://github.com/mhahsler/r-pmml/issues
 NeedsCompilation: no
-RoxygenNote: 7.3.3
 VignetteBuilder: knitr
 Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.0.0

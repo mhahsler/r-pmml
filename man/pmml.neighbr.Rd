@@ -2,7 +2,7 @@
 % Please edit documentation in R/pmml.neighbr.R
 \name{pmml.neighbr}
 \alias{pmml.neighbr}
-\title{Generate PMML for a neighbr object from the \bold{neighbr} package.}
+\title{Generate PMML for a neighbr object from the \strong{neighbr} package.}
 \usage{
 \method{pmml}{neighbr}(
   model,
@@ -39,7 +39,7 @@
 PMML representation of the neighbr object.
 }
 \description{
-Generate PMML for a neighbr object from the \bold{neighbr} package.
+Generate PMML for a neighbr object from the \strong{neighbr} package.
 }
 \details{
 The model is represented in the PMML NearestNeighborModel format.
@@ -122,6 +122,6 @@ fit_pmml <- pmml(fit)
 
 }
 \seealso{
-\code{\link[pmml]{pmml}},
+\code{\link[=pmml]{pmml()}},
 \href{https://dmg.org/pmml/v4-4-1/KNN.html}{PMML KNN specification}
 }

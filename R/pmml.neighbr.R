@@ -18,7 +18,7 @@
 # GNU General Public License for details (http://www.gnu.org/licenses/).
 # #############################################################################
 
-#' Generate PMML for a neighbr object from the \bold{neighbr} package.
+#' Generate PMML for a neighbr object from the **neighbr** package.
 #'
 #' @param model A neighbr object.
 #' @param missing_value_replacement Value to be used as the 'missingValueReplacement' attribute for all MiningFields.
@@ -29,9 +29,9 @@
 #'
 #' @details The model is represented in the PMML NearestNeighborModel format.
 #'
-#' The current version of this converter does not support transformations (\code{transforms}
-#' must be left as \code{NULL}), sets \code{categoricalScoringMethod} to "majorityVote", sets
-#' \code{continuousScoringMethod} to "average", and \code{isTransoformed} to "false".
+#' The current version of this converter does not support transformations (`transforms`
+#' must be left as `NULL`), sets `categoricalScoringMethod` to "majorityVote", sets
+#' `continuousScoringMethod` to "average", and `isTransoformed` to "false".
 #'
 #' @examples
 #' \dontrun{
@@ -105,8 +105,8 @@
 #' fit_pmml <- pmml(fit)
 #' }
 #'
-#' @seealso \code{\link[pmml]{pmml}},
-#' \href{https://dmg.org/pmml/v4-4-1/KNN.html}{PMML KNN specification}
+#' @seealso [pmml::pmml()],
+#' [PMML KNN specification](https://dmg.org/pmml/v4-4-1/KNN.html)
 #'
 #' @export pmml.neighbr
 #' @export
