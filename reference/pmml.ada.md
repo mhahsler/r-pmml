@@ -1,0 +1,104 @@
+# Generate the PMML representation for an ada object from the package ada.
+
+Generate the PMML representation for an ada object from the package ada.
+
+## Usage
+
+``` r
+# S3 method for class 'ada'
+pmml(
+  model,
+  model_name = "AdaBoost_Model",
+  app_name = "R PMML Generator - Package pmml",
+  description = "AdaBoost Model",
+  copyright = NULL,
+  model_version = NULL,
+  transforms = NULL,
+  missing_value_replacement = NULL,
+  ...
+)
+```
+
+## Arguments
+
+- model:
+
+  An ada object.
+
+- model_name:
+
+  A name to be given to the PMML model.
+
+- app_name:
+
+  The name of the application that generated the PMML.
+
+- description:
+
+  A descriptive text for the Header element of the PMML.
+
+- copyright:
+
+  The copyright notice for the model.
+
+- model_version:
+
+  A string specifying the model version.
+
+- transforms:
+
+  Data transformations.
+
+- missing_value_replacement:
+
+  Value to be used as the 'missingValueReplacement' attribute for all
+  MiningFields.
+
+- ...:
+
+  Further arguments passed to or from other methods.
+
+## Details
+
+Export the ada model in the PMML MiningModel (multiple models) format.
+The MiningModel element consists of a list of TreeModel elements, one in
+each model segment.
+
+This function implements the discrete adaboost algorithm only. Note that
+each segment tree is a classification model, returning either -1 or 1.
+However the MiningModel (ada algorithm) is doing a weighted sum of the
+returned value, -1 or 1. So the value of attribute functionName of
+element MiningModel is set to "regression"; the value of attribute
+functionName of each segment tree is also set to "regression" (they have
+to be the same as the parent MiningModel per PMML schema). Although each
+segment/tree is being named a "regression" tree, the actual returned
+score can only be -1 or 1, which practically turns each segment into a
+classification tree.
+
+The model in PMML format has 5 different outputs. The "rawValue" output
+is the value of the model expressed as a tree model. The boosted tree
+model uses a transformation of this value, this is the "boostValue"
+output. The last 3 outputs are the predicted class and the probabilities
+of each of the 2 classes (The ada package Boosted Tree models can only
+handle binary classification models).
+
+## References
+
+[ada: an R package for stochastic boosting (on
+CRAN)](https://CRAN.R-project.org/package=ada)
+
+## Author
+
+Wen Lin
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+library(ada)
+data(audit)
+
+fit <- ada(Adjusted ~ Employment + Education + Hours + Income, iter = 3, audit)
+fit_pmml <- pmml(fit)
+} # }
+```

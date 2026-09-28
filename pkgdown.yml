@@ -1,0 +1,10 @@
+pandoc: 3.8.3
+pkgdown: 2.2.1
+pkgdown_sha: ~
+articles:
+  packages_and_functions: packages_and_functions.html
+  xform_function: xform_function.html
+last_built: 2026-09-28T00:34Z
+urls:
+  reference: https://michael.hahsler.net/r-pmml/reference
+  article: https://michael.hahsler.net/r-pmml/articles

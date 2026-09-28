@@ -1,0 +1,67 @@
+# Wrap data in a data transformations object.
+
+Wrap data in a data transformations object.
+
+## Usage
+
+``` r
+xform_wrap(data, use_matrix = FALSE)
+```
+
+## Arguments
+
+- data:
+
+  The raw data set.
+
+- use_matrix:
+
+  Boolean value indicating whether data should be stored in matrix
+  format as well.
+
+## Value
+
+An R object containing information on the data to be transformed.
+
+## Details
+
+Wrap raw data read in an R object. This object can then be passed to
+various transform functions, and the data in it transformed.
+
+The object consists of the data itself and various properties for each
+data variable. Since the data is not always required to be in matrix
+format as well as a data frame, the 'use_matrix' value lets the user
+decide if the data should be stored in both formats, giving the user a
+choice in reducing the speed of the transformation operations and the
+memory required. If there is not enough information about the data, they
+are given default values; the data is assumed to be the original data of
+data type string. The variable names are assumed to be **X1**, **X2**,
+... This information is then used by the transformation functions to
+calculate the derived variable values.
+
+## See also
+
+[`pmml()`](https://michael.hahsler.net/r-pmml/reference/pmml.md)
+
+## Author
+
+Tridivesh Jena
+
+## Examples
+
+``` r
+# Load the standard iris dataset
+data(iris)
+
+# Make a object for the iris dataset to use with
+# transformation functions
+iris_box <- xform_wrap(iris)
+
+# Output only the transformations in PMML format.
+# This example will output just an empty "LocalTransformations"
+# element as no transformations were performed.
+trans_pmml <- pmml(NULL, transforms = iris_box)
+
+# The following will also work
+trans_pmml_2 <- pmml(, transforms = iris_box)
+```
