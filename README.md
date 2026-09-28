@@ -13,6 +13,8 @@ downloads](https://cranlogs.r-pkg.org/badges/pmml)](https://CRAN.R-project.org/p
 status](https://mhahsler.r-universe.dev/badges/pmml)](https://mhahsler.r-universe.dev/pmml)
 [![StackOverflow](https://img.shields.io/badge/stackoverflow-pmml%20R-orange.svg)](https://stackoverflow.com/questions/tagged/pmml%20R)
 
+**Maintainer:** [Michael Hahsler](https://michael.hahsler.net)
+
 **This is the official home for the R package pmml (starting with
 version pmml_2.6.0).** Previous versions can be found
 [here.](https://github.com/Cumulocity-IoT/r-pmml)
@@ -61,20 +63,6 @@ For a description of the supported packages, see the vignette:
 [Supported Packages and Additional
 Functions](https://mhahsler.r-universe.dev/articles/pmml/packages_and_functions.html).
 
-To cite package ‘pmml’ in publications use:
-
-> Hahsler M, Rodrigues B, Bolotov D, Jena T, Williams G, Lin W, Ishwaran
-> H, Kogalur U, Guha R (2026). *pmml: Generate PMML for Various Models*.
-> R package version 2.6.1, <https://github.com/mhahsler/r-pmml>.
-
-    @Manual{,
-      title = {pmml: Generate PMML for Various Models},
-      author = {Michael Hahsler and Bruno Rodrigues and Dmitriy Bolotov and Tridivesh Jena and Graham Williams and Wen-Ching Lin and Hemant Ishwaran and Udaya B. Kogalur and Rajarshi Guha},
-      year = {2026},
-      note = {R package version 2.6.1},
-      url = {https://github.com/mhahsler/r-pmml},
-    }
-
 ## Installation
 
 **Stable CRAN version:** Install from within R with
@@ -98,7 +86,7 @@ install.packages("pmml",
 library(pmml)
 
 # Build an lm model
-iris_lm <- lm(Sepal.Length ~ ., data=iris)
+iris_lm <- lm(Sepal.Length ~ ., data = iris)
 
 # Convert to pmml
 iris_lm_pmml <- pmml(iris_lm)
@@ -109,7 +97,7 @@ iris_lm_pmml
 #>  <Header copyright="Copyright (c) 2026 mhahsler" description="Linear Regression Model">
 #>   <Extension name="user" value="mhahsler" extender="R PMML Generator - Package pmml"/>
 #>   <Application name="R PMML Generator - Package pmml" version="2.6.1"/>
-#>   <Timestamp>2026-07-09 13:23:15.792675</Timestamp>
+#>   <Timestamp>2026-09-27 19:31:10.187416</Timestamp>
 #>  </Header>
 #>  <DataDictionary numberOfFields="5">
 #>   <DataField name="Sepal.Length" optype="continuous" dataType="double"/>
@@ -144,8 +132,7 @@ iris_lm_pmml
 #>  </RegressionModel>
 #> </PMML>
 
-# Write to file: 
-# save_pmml(iris_lm_pmml,"iris_lm.pmml")
+# Write to file: save_pmml(iris_lm_pmml,'iris_lm.pmml')
 ```
 
 ## Related Packages
@@ -164,6 +151,22 @@ from Github.
 
 [sklearn-pmml-model](https://github.com/iamDecode/sklearn-pmml-model)
 can import models trained on R into Python’s scikit-learn framework.
+
+## Citation request
+
+To cite package ‘pmml’ in publications use:
+
+> Hahsler M, Rodrigues B, Bolotov D, Jena T, Williams G, Lin W, Ishwaran
+> H, Kogalur U, Guha R (2026). *pmml: Generate PMML for Various Models*.
+> R package version 2.6.1, <https://github.com/mhahsler/r-pmml>.
+
+    @Manual{,
+      title = {pmml: Generate PMML for Various Models},
+      author = {Michael Hahsler and Bruno Rodrigues and Dmitriy Bolotov and Tridivesh Jena and Graham Williams and Wen-Ching Lin and Hemant Ishwaran and Udaya B. Kogalur and Rajarshi Guha},
+      year = {2026},
+      note = {R package version 2.6.1},
+      url = {https://github.com/mhahsler/r-pmml},
+    }
 
 ## References
 

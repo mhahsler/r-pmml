@@ -67,9 +67,6 @@ Supported packages:
 
 For a description of the supported packages, see the vignette: [Supported Packages and Additional Functions](https://mhahsler.r-universe.dev/articles/pmml/packages_and_functions.html).
 
-```{r echo=FALSE, results = 'asis'}
-pkg_citation(pkg, 1)
-```
 
 
 ```{r echo=FALSE, results = 'asis'}
@@ -108,6 +105,11 @@ can be installed from Github.
 [sklearn-pmml-model](https://github.com/iamDecode/sklearn-pmml-model)
 can import models trained on R into Python's scikit-learn framework.
 
+## Citation request
+
+```{r echo=FALSE, results = 'asis'}
+pkg_citation(pkg, 1)
+```
 
 ## References
 - [DMG PMML 4.4.1 specification](https://dmg.org/pmml/v4-4-1/GeneralStructure.html)

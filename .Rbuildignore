@@ -6,3 +6,6 @@
 _config.yml
 default.nix
 OLD
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
